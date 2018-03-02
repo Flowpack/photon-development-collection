@@ -1,0 +1,19 @@
+{
+    "description": "Photon CLI",
+    "type": "neos-package",
+    "name": "neos/photon-cli",
+    "require": {
+        "neos/flow": "~4.0",
+        "neos/photon-common": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Neos\\Photon\\Cli\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Neos.Photon.Cli"
+        }
+    }
+}
