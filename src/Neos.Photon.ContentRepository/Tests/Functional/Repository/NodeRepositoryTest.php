@@ -1,26 +1,28 @@
 <?php
 namespace Neos\Photon\ContentRepository\Tests\Functional\Repository;
 
-use Neos\Photon\ContentRepository\Domain\Model\Node;
-use Neos\Photon\ContentRepository\Domain\Repository\FileNodeRepository;
+use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Photon\ContentRepository\Domain\Repository\NodeRepository;
 
-class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
+class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
+{
 
     /**
-     * @var FileNodeRepository
+     * @var NodeRepository
      */
     protected $fileNodeRepository;
 
     public function setUp()
     {
         parent::setUp();
-        $this->fileNodeRepository = $this->objectManager->get(FileNodeRepository::class);
+        $this->fileNodeRepository = $this->objectManager->get(NodeRepository::class);
     }
 
     /**
      * @test
      */
-    public function getRootNode_with_path() {
+    public function getRootNode_with_path()
+    {
         $rootNode = $this->fileNodeRepository->getRootNode(__DIR__ . '/../Fixtures/Content');
 
         $this->assertNotNull($rootNode, 'Root node was found');
@@ -32,7 +34,7 @@ class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
      * @test
      * @depends getRootNode_with_path
      */
-    public function rootNode_getNodeName(Node $rootNode)
+    public function rootNode_getNodeName(NodeInterface $rootNode)
     {
         $this->assertSame('', $rootNode->getNodeName());
     }
@@ -41,7 +43,7 @@ class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
      * @test
      * @depends getRootNode_with_path
      */
-    public function rootNode_getNodeType(Node $rootNode)
+    public function rootNode_getNodeType(NodeInterface $rootNode)
     {
         $nodeType = $rootNode->getNodeType();
         $this->assertNotNull($nodeType, 'Root node returns node type');
@@ -54,7 +56,8 @@ class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
      * @test
      * @depends getRootNode_with_path
      */
-    public function rootNode_getChildNodes(Node $rootNode) {
+    public function rootNode_getChildNodes(NodeInterface $rootNode)
+    {
         $childNodes = $rootNode->getChildNodes();
 
         $this->assertCount(1, $childNodes, 'Root node has one child');
@@ -64,7 +67,8 @@ class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
      * @test
      * @depends getRootNode_with_path
      */
-    public function rootNode_getParent(Node $rootNode) {
+    public function rootNode_getParent(NodeInterface $rootNode)
+    {
         $parent = $rootNode->getParent();
         $this->assertTrue($parent === null, 'Root node parent is null');
     }
@@ -73,10 +77,34 @@ class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
      * @test
      * @depends getRootNode_with_path
      */
-    public function rootNode_getNode_with_file(Node $rootNode) {
-        $this->markTestIncomplete('getNode by path not yet done');
-
+    public function rootNode_getNode_with_file(NodeInterface $rootNode)
+    {
         $fileNode = $rootNode->getNode('fusion/namespaces/neos-fusion');
         $this->assertTrue($fileNode !== null, 'Node with path was resolved');
+        return $fileNode;
+    }
+
+    /**
+     * @test
+     * @depends rootNode_getNode_with_file
+     */
+    public function fileNode_getNodeType(NodeInterface $fileNode)
+    {
+        $nodeType = $fileNode->getNodeType();
+        $this->assertNotNull($nodeType, 'File node returns node type');
+        $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference',
+            $nodeType->getName(), 'Node type name matches');
+    }
+
+    /**
+     * @test
+     * @depends rootNode_getNode_with_file
+     */
+    public function fileNode_getProperties(NodeInterface $fileNode)
+    {
+        $properties = $fileNode->getProperties();
+        $this->assertSame([
+            'namespace' => 'Neos.Fusion'
+        ], $properties);
     }
 }
