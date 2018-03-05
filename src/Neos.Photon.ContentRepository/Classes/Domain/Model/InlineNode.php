@@ -2,8 +2,9 @@
 namespace Neos\Photon\ContentRepository\Domain\Model;
 
 use Neos\Photon\ContentRepository\Domain\Service\NodeResolver;
+use Neos\Photon\ContentRepository\Utility\Strings;
 
-class FolderNode implements NodeInterface
+class InlineNode implements NodeInterface
 {
 
     /**
@@ -27,6 +28,16 @@ class FolderNode implements NodeInterface
     private $nodeType;
 
     /**
+     * @var array
+     */
+    private $nodeConfiguration;
+
+    /**
+     * @var array
+     */
+    private $nodeData;
+
+    /**
      * @var NodeResolver
      */
     private $nodeResolver;
@@ -35,14 +46,18 @@ class FolderNode implements NodeInterface
         Context $ctx,
         string $path,
         StaticNodeType $nodeType,
+        array $nodeConfiguration,
+        array $nodeData,
         NodeResolver $nodeResolver
     ) {
         $this->ctx = $ctx;
-        $this->path = $path;
 
+        $this->path = $path;
         $this->nodeName = basename($path);
 
         $this->nodeType = $nodeType;
+        $this->nodeConfiguration = $nodeConfiguration;
+        $this->nodeData = $nodeData;
         $this->nodeResolver = $nodeResolver;
     }
 
@@ -63,17 +78,18 @@ class FolderNode implements NodeInterface
 
     public function getProperties(): array
     {
-        return [];
+        return $this->nodeData;
     }
 
     public function getChildNodes(): array
     {
-        return $this->nodeResolver->childNodesInPath($this->ctx, $this->path);
+        return $this->nodeResolver->childNodesForInlineNode($this->ctx, $this->path, $this->nodeConfiguration, $this->nodeData['__childNodes'] ?? []);
     }
 
     public function getNode(string $path): ?NodeInterface
     {
-        return $this->nodeResolver->nodeForPath($this->ctx, $path);
+        // TODO Implement getNode for InlineNode
+        return null;
     }
 
 }

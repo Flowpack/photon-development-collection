@@ -6,7 +6,10 @@ use Neos\Flow\Configuration\Source\YamlSource;
 use Neos\Photon\ContentRepository\Domain\Model\Context;
 use Neos\Photon\ContentRepository\Domain\Model\FileNode;
 use Neos\Photon\ContentRepository\Domain\Model\FolderNode;
+use Neos\Photon\ContentRepository\Domain\Model\InlineNode;
 use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Photon\ContentRepository\Domain\Model\RootNode;
+use Neos\Photon\ContentRepository\Utility\Strings;
 
 class NodeFactory
 {
@@ -32,18 +35,19 @@ class NodeFactory
         }
 
         if ($path === $ctx->getRootPath()) {
-            return new \Neos\Photon\ContentRepository\Domain\Model\RootNode(
+            return new RootNode(
                 $ctx,
                 $this->staticNodeTypeManager->getNodeType('unstructured')
             );
         }
 
+        // TODO Check if folder actually exists
         return $this->folderNode($ctx, $path);
     }
 
     public function nodeForFile(Context $ctx, string $pathAndFilename): NodeInterface
     {
-        $nodeData = $this->yamlSource->load(rtrim($pathAndFilename, '.yaml'));
+        $nodeData = $this->yamlSource->load(Strings::stripSuffix($pathAndFilename, '.yaml'));
         $nodeTypeName = $nodeData['__type'] ?? 'unstructured';
         unset($nodeData['__type']);
         $nodeType = $this->staticNodeTypeManager->getNodeType($nodeTypeName);
@@ -62,6 +66,20 @@ class NodeFactory
             $ctx,
             $path,
             $this->staticNodeTypeManager->getNodeType('unstructured')
+        );
+    }
+
+    public function inlineNode(Context $ctx, string $path, string $childNodeName, array $childNodesData, array $childNodeConfiguration)
+    {
+        $nodeTypeName = $childNodeConfiguration['type'] ?? 'unstructured';
+        $nodeType = $this->staticNodeTypeManager->getNodeType($nodeTypeName);
+
+        return new InlineNode(
+            $ctx,
+            $path . '/' . $childNodeName,
+            $nodeType,
+            $childNodeConfiguration,
+            $childNodesData
         );
     }
 }

@@ -20,12 +20,15 @@ Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition:
 
     'properties':
       inline: true
+      # Default type for children
       defaultType: 'Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition'
       constraints:
         nodeTypes:
           'Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition': true
+
     'examples':
       inline: true
+      # Default type for children
       defaultType: 'Neos.Photon.ContentRepository.Testing:Content.CodeExample'
       constraints:
         nodeTypes:

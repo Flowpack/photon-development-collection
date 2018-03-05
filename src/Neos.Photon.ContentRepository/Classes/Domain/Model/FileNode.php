@@ -2,6 +2,7 @@
 namespace Neos\Photon\ContentRepository\Domain\Model;
 
 use Neos\Photon\ContentRepository\Domain\Service\NodeResolver;
+use Neos\Photon\ContentRepository\Utility\Strings;
 
 class FileNode implements NodeInterface
 {
@@ -34,7 +35,7 @@ class FileNode implements NodeInterface
     /**
      * @var array
      */
-    private $properties;
+    private $nodeData;
 
     /**
      * @var NodeResolver
@@ -45,17 +46,17 @@ class FileNode implements NodeInterface
         Context $ctx,
         $pathAndFilename,
         StaticNodeType $nodeType,
-        array $properties,
+        array $nodeData,
         NodeResolver $nodeResolver
     ) {
         $this->ctx = $ctx;
         $this->pathAndFilename = $pathAndFilename;
 
-        $this->path = rtrim($pathAndFilename, '.yaml');
+        $this->path = Strings::stripSuffix($pathAndFilename, '.yaml');
         $this->nodeName = basename($this->path);
 
         $this->nodeType = $nodeType;
-        $this->properties = $properties;
+        $this->nodeData = $nodeData;
         $this->nodeResolver = $nodeResolver;
     }
 
@@ -71,23 +72,28 @@ class FileNode implements NodeInterface
 
     public function getParent(): ?NodeInterface
     {
-        return $this->nodeResolver->getParentByPath($this->ctx, $this->path);
+        return $this->nodeResolver->parentNodeForPath($this->ctx, $this->path);
     }
 
     public function getProperties(): array
     {
-        return $this->properties;
+        return $this->nodeData;
     }
 
     public function getChildNodes(): array
     {
-        // TODO Also resolve configured child nodes from properties!
-
-        return $this->nodeResolver->childNodesInPath($this->ctx, $this->path);
+        return array_merge(
+            $this->nodeResolver->childNodesInPath($this->ctx, $this->path),
+            $this->nodeResolver->childNodesForNodeType($this->ctx, $this->nodeType, $this->path, $this->nodeData['__childNodes'] ?? [])
+        );
     }
 
     public function getNode(string $path): ?NodeInterface
     {
+        $inlineChildNode = $this->nodeResolver->childNodeForNodeType($this->ctx, $path, $this->nodeType, $this->path, $this->nodeData['__childNodes'] ?? []);
+        if ($inlineChildNode !== null) {
+            return $inlineChildNode;
+        }
         return $this->nodeResolver->nodeForPath($this->ctx, $path);
     }
 
