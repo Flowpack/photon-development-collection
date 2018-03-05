@@ -1,0 +1,3 @@
+__type: 'Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference'
+
+namespace: 'Neos.Fusion'

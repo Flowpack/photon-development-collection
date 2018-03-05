@@ -1,0 +1,19 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "neos/photon-contentrepository",
+    "require": {
+        "neos/flow": "~4.0",
+        "neos/photon-common": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Neos\\Photon\\ContentRepository\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Neos.Photon.ContentRepository"
+        }
+    }
+}

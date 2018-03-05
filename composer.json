@@ -12,6 +12,9 @@
     },
     "require": {
         "neos/flow": "~4.3.0",
+        "neos/photon-common": "@dev",
+        "neos/photon-fusion": "@dev",
+        "neos/photon-contentrepository": "@dev",
         "neos/photon-cli": "@dev"
     },
     "require-dev": {

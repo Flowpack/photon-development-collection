@@ -1,0 +1,13 @@
+Neos:
+  Photon:
+    Fusion:
+
+      fusion:
+
+        autoInclude:
+          Neos.Fusion: true
+          Neos.Photon.Fusion: true
+
+  Fusion:
+    rendering:
+      exceptionHandler: 'Neos\Fusion\Core\ExceptionHandlers\BubblingHandler'

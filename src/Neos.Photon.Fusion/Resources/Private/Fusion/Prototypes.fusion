@@ -1,0 +1,3 @@
+prototype(Neos.Photon.Fusion:FilePublisher) {
+    @class = 'Neos\\Photon\\Fusion\\FusionObjects\\FilePublisherImplementation'
+}
