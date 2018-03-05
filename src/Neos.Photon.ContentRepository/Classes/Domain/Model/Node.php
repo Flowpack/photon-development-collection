@@ -1,7 +1,7 @@
 <?php
 namespace Neos\Photon\ContentRepository\Domain\Model;
 
-class Node
+class Node implements NodeInterface
 {
 
     /**
@@ -27,20 +27,20 @@ class Node
     /**
      * @var iterable
      */
-    private $childNodes;
+    private $childNodesIterable;
 
     public function __construct(
         string $nodeName,
         StaticNodeType $nodeType,
         ?callable $parentResolver,
         array $properties,
-        iterable $childNodes
+        iterable $childNodeGenerator
     ) {
         $this->nodeName = $nodeName;
         $this->nodeType = $nodeType;
         $this->parentResolver = $parentResolver;
         $this->properties = $properties;
-        $this->childNodes = $childNodes;
+        $this->childNodesIterable = $childNodeGenerator;
     }
 
     public function getNodeName(): string
@@ -53,7 +53,7 @@ class Node
         return $this->nodeType;
     }
 
-    public function getParent(): ?Node
+    public function getParent(): ?NodeInterface
     {
         // TODO Cache Parent?
         return $this->parentResolver !== null ? ($this->parentResolver)() : null;
@@ -64,12 +64,15 @@ class Node
         return $this->properties;
     }
 
-    public function getChildNodes(): iterable
+    public function getChildNodes(): array
     {
-        return $this->childNodes;
+        $iterable = $this->childNodesIterable;
+        return iterator_to_array((function () use ($iterable) {
+            yield from $iterable;
+        })());
     }
 
-    public function getNode(string $path): ?Node
+    public function getNode(string $path): ?NodeInterface
     {
         return null;
     }

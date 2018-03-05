@@ -5,6 +5,7 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\Source\YamlSource;
 use Neos\Photon\ContentRepository\Domain\Model\Context;
 use Neos\Photon\ContentRepository\Domain\Model\Node;
+use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Photon\ContentRepository\Domain\Model\StaticNodeType;
 use Neos\Photon\ContentRepository\Domain\Service\StaticNodeTypeManager;
 
@@ -23,7 +24,7 @@ class FileNodeRepository
      */
     protected $staticNodeTypeManager;
 
-    public function getRootNode(string $path): Node
+    public function getRootNode(string $path): NodeInterface
     {
         $ctx = Context::forRoot($path);
         return $this->folderNode($ctx, '', $path);
@@ -46,7 +47,7 @@ class FileNodeRepository
         }
     }
 
-    private function nodeForFile(Context $ctx, string $pathAndFilename): Node
+    private function nodeForFile(Context $ctx, string $pathAndFilename): NodeInterface
     {
         $nodeData = $this->yamlSource->load($pathAndFilename);
         $nodeTypeName = $nodeData['__type'] ?? 'unstructured';
@@ -68,7 +69,7 @@ class FileNodeRepository
         );
     }
 
-    private function folderNode(Context $ctx, string $nodeName, string $path): Node
+    private function folderNode(Context $ctx, string $nodeName, string $path): NodeInterface
     {
         $parentPath = dirname($path);
         $startsWithRootPath = strpos($parentPath, $ctx->getRootPath()) === 0;
@@ -106,7 +107,7 @@ class FileNodeRepository
         }
     }
 
-    private function nodeByPath(Context $ctx, string $path): Node
+    private function nodeByPath(Context $ctx, string $path): NodeInterface
     {
         $path = rtrim($path, '/');
         $pathAndFilename = $path . '.yaml';

@@ -55,10 +55,7 @@ class FileNodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase {
      * @depends getRootNode_with_path
      */
     public function rootNode_getChildNodes(Node $rootNode) {
-        $childNodes = [];
-        foreach ($rootNode->getChildNodes() as $childNode) {
-            $childNodes[] = $childNode;
-        }
+        $childNodes = $rootNode->getChildNodes();
 
         $this->assertCount(1, $childNodes, 'Root node has one child');
     }
