@@ -49,7 +49,7 @@ class FolderNode implements NodeInterface
         if (strpos($path, $ctx->getRootPath()) !== 0) {
             throw new \InvalidArgumentException('path must be inside root path');
         }
-        $this->nodePath = substr($path, strlen($ctx->getRootPath()));
+        $this->nodePath = substr($path, strlen($ctx->getRootPath()) + 1);
 
         $this->nodeType = $nodeType;
         $this->nodeResolver = $nodeResolver;

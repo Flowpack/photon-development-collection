@@ -15,7 +15,7 @@ class InlineNode implements NodeInterface
     /**
      * @var string
      */
-    private $path;
+    private $nodePath;
 
     /**
      * @var string
@@ -44,7 +44,7 @@ class InlineNode implements NodeInterface
 
     public function __construct(
         Context $ctx,
-        string $path,
+        string $nodePath,
         StaticNodeType $nodeType,
         array $nodeConfiguration,
         array $nodeData,
@@ -52,8 +52,8 @@ class InlineNode implements NodeInterface
     ) {
         $this->ctx = $ctx;
 
-        $this->path = $path;
-        $this->nodeName = basename($path);
+        $this->nodePath = $nodePath;
+        $this->nodeName = basename($nodePath);
 
         $this->nodeType = $nodeType;
         $this->nodeConfiguration = $nodeConfiguration;
@@ -73,7 +73,7 @@ class InlineNode implements NodeInterface
 
     public function getParent(): ?NodeInterface
     {
-        return $this->nodeResolver->parentNodeForPath($this->ctx, $this->path);
+        return $this->nodeResolver->parentNodeForPath($this->ctx, $this->nodePath);
     }
 
     public function getProperties(): array
@@ -82,8 +82,8 @@ class InlineNode implements NodeInterface
     }
 
     public function getChildNodes(): array
-    {
-        return $this->nodeResolver->childNodesForInlineNode($this->ctx, $this->path, $this->nodeConfiguration, $this->nodeData['__childNodes'] ?? []);
+    {;
+        return $this->nodeResolver->childNodesForInlineNode($this->ctx, $this->nodePath, $this->nodeConfiguration, $this->nodeData['__childNodes'] ?? []);
     }
 
     public function getChildNode(string $nodeName): ?NodeInterface

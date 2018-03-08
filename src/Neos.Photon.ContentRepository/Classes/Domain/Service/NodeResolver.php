@@ -93,7 +93,7 @@ class NodeResolver
         $ctx,
         string $nodeName,
         StaticNodeType $nodeType,
-        string $path,
+        string $nodePath,
         array $childNodesData
     ): ?NodeInterface
     {
@@ -107,7 +107,7 @@ class NodeResolver
         if ($inline) {
             return $this->nodeFactory->inlineNode(
                 $ctx,
-                $path,
+                $nodePath,
                 $nodeName,
                 $childNodesData[$nodeName] ?? [],
                 $childNodeConfiguration
@@ -117,7 +117,7 @@ class NodeResolver
         return null;
     }
 
-    public function childNodesForInlineNode(Context $ctx, string $path, array $nodeConfiguration, array $childNodesData): array
+    public function childNodesForInlineNode(Context $ctx, string $nodePath, array $nodeConfiguration, array $childNodesData): array
     {
         $childNodeConfiguration = [];
         if (isset($nodeConfiguration['defaultType'])) {
@@ -128,7 +128,7 @@ class NodeResolver
         foreach ($childNodesData as $childNodeName => $childNodeData) {
             $childNodes[$childNodeName] = $this->nodeFactory->inlineNode(
                 $ctx,
-                $path,
+                $nodePath,
                 $childNodeName,
                 $childNodeData,
                 $childNodeConfiguration

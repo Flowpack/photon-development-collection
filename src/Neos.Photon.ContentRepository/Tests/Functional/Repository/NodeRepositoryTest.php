@@ -1,11 +1,12 @@
 <?php
 namespace Neos\Photon\ContentRepository\Tests\Functional\Repository;
 
+use Neos\Flow\Tests\FunctionalTestCase;
 use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Photon\ContentRepository\Domain\Repository\NodeRepository;
 use Neos\Photon\ContentRepository\Utility\Nodes;
 
-class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
+class NodeRepositoryTest extends FunctionalTestCase
 {
 
     /**
@@ -78,6 +79,18 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
      * @test
      * @depends getRootNode_with_path
      */
+    public function rootNode_getNode_with_folder(NodeInterface $rootNode)
+    {
+        $fileNode = Nodes::walkPath($rootNode, 'fusion/namespaces');
+        $this->assertTrue($fileNode !== null, 'Node with path was resolved');
+        $this->assertSame('namespaces', $fileNode->getNodeName());
+        return $fileNode;
+    }
+
+    /**
+     * @test
+     * @depends getRootNode_with_path
+     */
     public function rootNode_getNode_with_file(NodeInterface $rootNode)
     {
         $fileNode = Nodes::walkPath($rootNode, 'fusion/namespaces/neos-fusion');
@@ -106,6 +119,28 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
         $this->assertSame([
             'namespace' => 'Neos.Fusion'
         ], $properties);
+    }
+
+    /**
+     * @test
+     * @depends rootNode_getNode_with_file
+     */
+    public function fileNode_getParent(NodeInterface $fileNode)
+    {
+        $parent = $fileNode->getParent();
+        $this->assertTrue($parent !== null, 'File node parent is not null');
+        $this->assertSame('namespaces', $parent->getNodeName());
+    }
+
+    /**
+     * @test
+     * @depends rootNode_getNode_with_folder
+     */
+    public function folderNode_getParent(NodeInterface $folderNode)
+    {
+        $parent = $folderNode->getParent();
+        $this->assertTrue($parent !== null, 'folder node parent is not null');
+        $this->assertSame('fusion', $parent->getNodeName());
     }
 
     /**
@@ -145,7 +180,7 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
      * @test
      * @depends rootNode_getChildNode_with_inline_child_nodes
      */
-    public function fileNode_with_inline_getNode(NodeInterface $fileNode)
+    public function fileNode_with_inline_getChildNode(NodeInterface $fileNode)
     {
         $inlineNode = $fileNode->getChildNode('properties');
         $this->assertTrue($inlineNode !== null, 'Inline child node exists');
@@ -154,7 +189,7 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
 
     /**
      * @test
-     * @depends fileNode_with_inline_getNode
+     * @depends fileNode_with_inline_getChildNode
      */
     public function inlineChildNode_getChildNodes(NodeInterface $inlineNode)
     {
@@ -166,5 +201,17 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
         }
 
         return $childNodes;
+    }
+
+    /**
+     * @test
+     * @depends fileNode_with_inline_getChildNode
+     */
+    public function inlineChildNode_getParent_resolves_file_node(NodeInterface $inlineNode)
+    {
+        $parent = $inlineNode->getParent();
+        $this->assertTrue($parent !== null, 'Parent node is not null');
+        $this->assertSame('array', $parent->getNodeName());
+        $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition', $parent->getNodeType()->getName());
     }
 }

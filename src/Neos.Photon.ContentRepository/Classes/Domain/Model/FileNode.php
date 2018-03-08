@@ -63,7 +63,7 @@ class FileNode implements NodeInterface
 
         $this->path = Strings::stripSuffix($pathAndFilename, '.yaml');
         $this->nodeName = basename($this->path);
-        $this->nodePath = substr($this->path, strlen($ctx->getRootPath()));
+        $this->nodePath = substr($this->path, strlen($ctx->getRootPath()) + 1);
 
         $this->nodeType = $nodeType;
         $this->nodeData = $nodeData;
@@ -105,7 +105,7 @@ class FileNode implements NodeInterface
         }
 
         // First try to find an inline node by node name
-        $inlineChildNode = $this->nodeResolver->childNodeForNodeType($this->ctx, $nodeName, $this->nodeType, $this->path, $this->nodeData['__childNodes'] ?? []);
+        $inlineChildNode = $this->nodeResolver->childNodeForNodeType($this->ctx, $nodeName, $this->nodeType, $this->nodePath, $this->nodeData['__childNodes'] ?? []);
         if ($inlineChildNode !== null) {
             return $inlineChildNode;
         }
