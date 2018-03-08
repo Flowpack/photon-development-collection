@@ -131,7 +131,7 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
 
     /**
      * @test
-     * @depends rootNode_getNode_with_inline_child_nodes
+     * @depends rootNode_getChildNode_with_inline_child_nodes
      */
     public function fileNode_with_inline_getChildNodes(NodeInterface $fileNode)
     {
@@ -143,13 +143,13 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
 
     /**
      * @test
-     * @depends rootNode_getNode_with_inline_child_nodes
+     * @depends rootNode_getChildNode_with_inline_child_nodes
      */
     public function fileNode_with_inline_getNode(NodeInterface $fileNode)
     {
-        $childNode = $fileNode->getChildNode('properties');
-        $this->assertTrue($childNode !== null, 'Inline child node exists');
-        return $childNode;
+        $inlineNode = $fileNode->getChildNode('properties');
+        $this->assertTrue($inlineNode !== null, 'Inline child node exists');
+        return $inlineNode;
     }
 
     /**
