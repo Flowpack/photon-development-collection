@@ -56,9 +56,12 @@ class RootNode implements NodeInterface
         return $this->nodeResolver->childNodesInPath($this->ctx, $this->ctx->getRootPath());
     }
 
-    public function getNode(string $path): ?NodeInterface
+    public function getChildNode(string $nodeName): ?NodeInterface
     {
-        return $this->nodeResolver->nodeForPath($this->ctx, $path);
+        if (strpos($nodeName, '/') !== false) {
+            throw new \InvalidArgumentException('nodeName must not be a path');
+        }
+        return $this->nodeResolver->nodeForPath($this->ctx, $nodeName);
     }
 
 }

@@ -28,6 +28,11 @@ class FileNode implements NodeInterface
     private $nodeName;
 
     /**
+     * @var string
+     */
+    private $nodePath;
+
+    /**
      * @var StaticNodeType
      */
     private $nodeType;
@@ -50,10 +55,15 @@ class FileNode implements NodeInterface
         NodeResolver $nodeResolver
     ) {
         $this->ctx = $ctx;
+
+        if (strpos($pathAndFilename, $ctx->getRootPath()) !== 0) {
+            throw new \InvalidArgumentException('path must be inside root path');
+        }
         $this->pathAndFilename = $pathAndFilename;
 
         $this->path = Strings::stripSuffix($pathAndFilename, '.yaml');
         $this->nodeName = basename($this->path);
+        $this->nodePath = substr($this->path, strlen($ctx->getRootPath()));
 
         $this->nodeType = $nodeType;
         $this->nodeData = $nodeData;
@@ -88,13 +98,18 @@ class FileNode implements NodeInterface
         );
     }
 
-    public function getNode(string $path): ?NodeInterface
+    public function getChildNode(string $nodeName): ?NodeInterface
     {
-        $inlineChildNode = $this->nodeResolver->childNodeForNodeType($this->ctx, $path, $this->nodeType, $this->path, $this->nodeData['__childNodes'] ?? []);
+        if (strpos($nodeName, '/') !== false) {
+            throw new \InvalidArgumentException('nodeName must not be a path');
+        }
+
+        // First try to find an inline node by node name
+        $inlineChildNode = $this->nodeResolver->childNodeForNodeType($this->ctx, $nodeName, $this->nodeType, $this->path, $this->nodeData['__childNodes'] ?? []);
         if ($inlineChildNode !== null) {
             return $inlineChildNode;
         }
-        return $this->nodeResolver->nodeForPath($this->ctx, $path);
+        return $this->nodeResolver->nodeForPath($this->ctx, $this->nodePath . '/' . $nodeName);
     }
 
 }

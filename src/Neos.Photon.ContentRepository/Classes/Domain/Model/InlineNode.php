@@ -86,9 +86,12 @@ class InlineNode implements NodeInterface
         return $this->nodeResolver->childNodesForInlineNode($this->ctx, $this->path, $this->nodeConfiguration, $this->nodeData['__childNodes'] ?? []);
     }
 
-    public function getNode(string $path): ?NodeInterface
+    public function getChildNode(string $nodeName): ?NodeInterface
     {
-        // TODO Implement getNode for InlineNode
+        if (strpos($nodeName, '/') !== false) {
+            throw new \InvalidArgumentException('nodeName must not be a path');
+        }
+        // TODO Implement getChildNode for InlineNode
         return null;
     }
 

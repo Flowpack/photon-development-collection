@@ -3,6 +3,7 @@ namespace Neos\Photon\ContentRepository\Tests\Functional\Repository;
 
 use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Photon\ContentRepository\Domain\Repository\NodeRepository;
+use Neos\Photon\ContentRepository\Utility\Nodes;
 
 class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
@@ -79,7 +80,7 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
      */
     public function rootNode_getNode_with_file(NodeInterface $rootNode)
     {
-        $fileNode = $rootNode->getNode('fusion/namespaces/neos-fusion');
+        $fileNode = Nodes::walkPath($rootNode, 'fusion/namespaces/neos-fusion');
         $this->assertTrue($fileNode !== null, 'Node with path was resolved');
         return $fileNode;
     }
@@ -92,8 +93,7 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
     {
         $nodeType = $fileNode->getNodeType();
         $this->assertNotNull($nodeType, 'File node returns node type');
-        $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference',
-            $nodeType->getName(), 'Node type name matches');
+        $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference', $nodeType->getName(), 'Node type name matches');
     }
 
     /**
@@ -112,11 +112,21 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
      * @test
      * @depends getRootNode_with_path
      */
-    public function rootNode_getNode_with_inline_child_nodes(NodeInterface $rootNode)
+    public function rootNode_getChildNode_with_inline_child_nodes(NodeInterface $rootNode)
     {
-        $fileNode = $rootNode->getNode('fusion/namespaces/neos-fusion/array');
+        $fileNode = Nodes::walkPath($rootNode, 'fusion/namespaces/neos-fusion/array');
         $this->assertTrue($fileNode !== null, 'Node with path was resolved');
         return $fileNode;
+    }
+
+    /**
+     * @test
+     * @depends getRootNode_with_path
+     * @expectedException \InvalidArgumentException
+     */
+    public function rootNode_getChildNode_with_path_throws(NodeInterface $rootNode)
+    {
+        $rootNode->getChildNode('fusion/namespaces/neos-fusion/array');
     }
 
     /**
@@ -137,7 +147,7 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
      */
     public function fileNode_with_inline_getNode(NodeInterface $fileNode)
     {
-        $childNode = $fileNode->getNode('properties');
+        $childNode = $fileNode->getChildNode('properties');
         $this->assertTrue($childNode !== null, 'Inline child node exists');
 
         var_dump($childNode->getNodeName());

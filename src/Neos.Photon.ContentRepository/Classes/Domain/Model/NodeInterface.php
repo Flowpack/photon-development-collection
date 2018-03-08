@@ -14,5 +14,5 @@ interface NodeInterface
 
     public function getChildNodes(): array;
 
-    public function getNode(string $path): ?NodeInterface;
+    public function getChildNode(string $nodeName): ?NodeInterface;
 }

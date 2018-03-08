@@ -22,6 +22,11 @@ class FolderNode implements NodeInterface
     private $nodeName;
 
     /**
+     * @var string
+     */
+    private $nodePath;
+
+    /**
      * @var StaticNodeType
      */
     private $nodeType;
@@ -41,6 +46,10 @@ class FolderNode implements NodeInterface
         $this->path = $path;
 
         $this->nodeName = basename($path);
+        if (strpos($path, $ctx->getRootPath()) !== 0) {
+            throw new \InvalidArgumentException('path must be inside root path');
+        }
+        $this->nodePath = substr($path, strlen($ctx->getRootPath()));
 
         $this->nodeType = $nodeType;
         $this->nodeResolver = $nodeResolver;
@@ -71,9 +80,10 @@ class FolderNode implements NodeInterface
         return $this->nodeResolver->childNodesInPath($this->ctx, $this->path);
     }
 
-    public function getNode(string $path): ?NodeInterface
+    public function getChildNode(string $nodeName): ?NodeInterface
     {
-        return $this->nodeResolver->nodeForPath($this->ctx, $path);
+        var_dump($this->path . '/' . $nodeName);
+        return $this->nodeResolver->nodeForPath($this->ctx, $this->nodePath . '/' . $nodeName);
     }
 
 }
