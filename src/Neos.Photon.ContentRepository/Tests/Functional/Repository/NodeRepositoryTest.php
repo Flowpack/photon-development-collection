@@ -149,9 +149,6 @@ class NodeRepositoryTest extends \Neos\Flow\Tests\FunctionalTestCase
     {
         $childNode = $fileNode->getChildNode('properties');
         $this->assertTrue($childNode !== null, 'Inline child node exists');
-
-        var_dump($childNode->getNodeName());
-
         return $childNode;
     }
 

@@ -82,7 +82,6 @@ class FolderNode implements NodeInterface
 
     public function getChildNode(string $nodeName): ?NodeInterface
     {
-        var_dump($this->path . '/' . $nodeName);
         return $this->nodeResolver->nodeForPath($this->ctx, $this->nodePath . '/' . $nodeName);
     }
 
