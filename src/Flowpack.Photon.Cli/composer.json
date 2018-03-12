@@ -2,6 +2,7 @@
     "description": "Photon CLI",
     "type": "neos-package",
     "name": "flowpack/photon-cli",
+    "license": "MIT",
     "require": {
         "neos/flow": "~4.0",
         "flowpack/photon-common": "*",

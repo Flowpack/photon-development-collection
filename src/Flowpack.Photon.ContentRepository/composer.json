@@ -2,6 +2,7 @@
     "description": "Photon Content Repository based on static files (YAML) and folders",
     "type": "neos-package",
     "name": "flowpack/photon-contentrepository",
+    "license": "MIT",
     "require": {
         "neos/flow": "~4.0",
         "flowpack/photon-common": "*"

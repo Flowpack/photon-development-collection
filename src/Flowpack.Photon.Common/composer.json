@@ -2,6 +2,7 @@
     "description": "Photon common",
     "type": "neos-package",
     "name": "flowpack/photon-common",
+    "license": "MIT",
     "require": {
         "neos/flow": "~4.0"
     },
