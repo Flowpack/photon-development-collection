@@ -1,11 +1,11 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Service;
+namespace Flowpack\Photon\ContentRepository\Domain\Service;
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Photon\ContentRepository\Domain\Model\Context;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Photon\ContentRepository\Domain\Model\StaticNodeType;
-use Neos\Photon\ContentRepository\Utility\Arrays;
+use Flowpack\Photon\ContentRepository\Domain\Model\Context;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\StaticNodeType;
+use Flowpack\Photon\ContentRepository\Utility\Arrays;
 
 class NodeResolver
 {

@@ -1,6 +1,6 @@
 {
-    "name": "neos/photon",
-    "description": "Photon is a static site generator based on Neos",
+    "name": "flowpack/photon-development-distribution",
+    "description": "Photon is a database less static site generator based on Neos technology (early alpha)",
     "license": "MIT",
     "repositories": [
         { "type": "path", "url": "src/*" }
@@ -12,10 +12,10 @@
     },
     "require": {
         "neos/flow": "~4.3.0",
-        "neos/photon-common": "@dev",
-        "neos/photon-fusion": "@dev",
-        "neos/photon-contentrepository": "@dev",
-        "neos/photon-cli": "@dev"
+        "flowpack/photon-common": "@dev",
+        "flowpack/photon-fusion": "@dev",
+        "flowpack/photon-contentrepository": "@dev",
+        "flowpack/photon-cli": "@dev"
     },
     "require-dev": {
         "neos/kickstarter": "~4.3.0",

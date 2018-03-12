@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
+namespace Flowpack\Photon\ContentRepository\Eel\FlowQueryOperations;
 
 /*
  * This file is part of the Neos.ContentRepository package.
@@ -14,8 +14,8 @@ namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\ObjectAccess;
-use Neos\Photon\ContentRepository\Domain\Model\Node;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\Node;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * This filter implementation contains specific behavior for use on ContentRepository

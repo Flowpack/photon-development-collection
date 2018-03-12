@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
+namespace Flowpack\Photon\ContentRepository\Eel\FlowQueryOperations;
 
 /*
  * This file is part of the Neos.ContentRepository package.
@@ -15,7 +15,7 @@ use Neos\Eel\FlowQuery\FizzleException;
 use Neos\Flow\Annotations as Flow;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Eel\FlowQuery\Operations\AbstractOperation;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * "has" operation working on NodeInterface. Reduce the set of matched elements

@@ -1,4 +1,4 @@
-__type: 'Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition'
+__type: 'Flowpack.Photon.ContentRepository.Testing:Content.ObjectDefinition'
 
 objectName: 'Attributes'
 

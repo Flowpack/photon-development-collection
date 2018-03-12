@@ -1,7 +1,7 @@
 <?php
-namespace Neos\Photon\ContentRepository\Utility;
+namespace Flowpack\Photon\ContentRepository\Utility;
 
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
 
 class Nodes
 {

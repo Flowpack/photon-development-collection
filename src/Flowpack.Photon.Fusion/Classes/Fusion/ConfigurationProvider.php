@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\Fusion\Fusion;
+namespace Flowpack\Photon\Fusion\Fusion;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
@@ -44,7 +44,7 @@ class ConfigurationProvider
 
     public function initializeObject(): void
     {
-        $this->fusionParser->setObjectTypeNamespace('default', 'Neos.Photon.Fusion');
+        $this->fusionParser->setObjectTypeNamespace('default', 'Flowpack.Photon.Fusion');
     }
 
     public function getMergedFusionObjectTree(string $packageKey): array

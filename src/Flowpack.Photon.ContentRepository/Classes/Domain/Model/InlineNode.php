@@ -1,8 +1,8 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Model;
+namespace Flowpack\Photon\ContentRepository\Domain\Model;
 
-use Neos\Photon\ContentRepository\Domain\Service\NodeResolver;
-use Neos\Photon\ContentRepository\Utility\Strings;
+use Flowpack\Photon\ContentRepository\Domain\Service\NodeResolver;
+use Flowpack\Photon\ContentRepository\Utility\Strings;
 
 class InlineNode implements NodeInterface
 {

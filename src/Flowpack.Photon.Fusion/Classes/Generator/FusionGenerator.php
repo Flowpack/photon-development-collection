@@ -1,10 +1,10 @@
 <?php
-namespace Neos\Photon\Fusion\Generator;
+namespace Flowpack\Photon\Fusion\Generator;
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Photon\Common\Generator\FileResult;
-use Neos\Photon\Common\Generator\GeneratorInterface;
-use Neos\Photon\ContentRepository\Domain\Repository\NodeRepository;
+use Flowpack\Photon\Common\Generator\FileResult;
+use Flowpack\Photon\Common\Generator\GeneratorInterface;
+use Flowpack\Photon\ContentRepository\Domain\Repository\NodeRepository;
 
 /**
  * @Flow\Scope("singleton")
@@ -19,7 +19,7 @@ class FusionGenerator implements GeneratorInterface {
 
     /**
      * @Flow\Inject
-     * @var \Neos\Photon\Fusion\Fusion\ConfigurationProvider
+     * @var \Flowpack\Photon\Fusion\Fusion\ConfigurationProvider
      */
     protected $fusionConfigurationProvider;
 

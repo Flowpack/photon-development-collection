@@ -1,4 +1,4 @@
-Neos:
+Flowpack:
   Photon:
     Fusion:
 
@@ -6,7 +6,7 @@ Neos:
 
         autoInclude:
           Neos.Fusion: true
-          Neos.Photon.Fusion: true
+          Flowpack.Photon.Fusion: true
 
   Fusion:
     rendering:

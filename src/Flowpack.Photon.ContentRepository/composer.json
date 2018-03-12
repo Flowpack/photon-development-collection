@@ -1,19 +1,19 @@
 {
-    "description": "",
+    "description": "Photon Content Repository based on static files (YAML) and folders",
     "type": "neos-package",
-    "name": "neos/photon-contentrepository",
+    "name": "flowpack/photon-contentrepository",
     "require": {
         "neos/flow": "~4.0",
-        "neos/photon-common": "*"
+        "flowpack/photon-common": "*"
     },
     "autoload": {
         "psr-4": {
-            "Neos\\Photon\\ContentRepository\\": "Classes/"
+            "Flowpack\\Photon\\ContentRepository\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Neos.Photon.ContentRepository"
+            "package-key": "Flowpack.Photon.ContentRepository"
         }
     }
 }

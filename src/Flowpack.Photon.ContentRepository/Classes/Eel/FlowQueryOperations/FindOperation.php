@@ -1,14 +1,14 @@
 <?php
-namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
+namespace Flowpack\Photon\ContentRepository\Eel\FlowQueryOperations;
 
 use Neos\Eel\FlowQuery\FizzleParser;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Eel\FlowQuery\FlowQueryException;
 use Neos\Eel\FlowQuery\Operations\AbstractOperation;
 use Neos\Flow\Annotations as Flow;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Photon\ContentRepository\Domain\Repository\NodeRepository;
-use Neos\Photon\ContentRepository\Utility\Nodes;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Repository\NodeRepository;
+use Flowpack\Photon\ContentRepository\Utility\Nodes;
 
 /**
  * "find" operation working on ContentRepository nodes. This operation allows for retrieval

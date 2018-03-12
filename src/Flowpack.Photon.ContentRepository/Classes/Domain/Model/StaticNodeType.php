@@ -1,12 +1,12 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Model;
+namespace Flowpack\Photon\ContentRepository\Domain\Model;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Utility\ObjectAccess;
 use Neos\Utility\Arrays;
 use Neos\Utility\PositionalArraySorter;
-use Neos\Photon\ContentRepository\Domain\Service\StaticNodeTypeManager;
+use Flowpack\Photon\ContentRepository\Domain\Service\StaticNodeTypeManager;
 
 class StaticNodeType
 {

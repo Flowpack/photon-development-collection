@@ -1,15 +1,15 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Service;
+namespace Flowpack\Photon\ContentRepository\Domain\Service;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\Source\YamlSource;
-use Neos\Photon\ContentRepository\Domain\Model\Context;
-use Neos\Photon\ContentRepository\Domain\Model\FileNode;
-use Neos\Photon\ContentRepository\Domain\Model\FolderNode;
-use Neos\Photon\ContentRepository\Domain\Model\InlineNode;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Photon\ContentRepository\Domain\Model\RootNode;
-use Neos\Photon\ContentRepository\Utility\Strings;
+use Flowpack\Photon\ContentRepository\Domain\Model\Context;
+use Flowpack\Photon\ContentRepository\Domain\Model\FileNode;
+use Flowpack\Photon\ContentRepository\Domain\Model\FolderNode;
+use Flowpack\Photon\ContentRepository\Domain\Model\InlineNode;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\RootNode;
+use Flowpack\Photon\ContentRepository\Utility\Strings;
 
 class NodeFactory
 {

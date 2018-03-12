@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository;
+namespace Flowpack\Photon\ContentRepository;
 
 class Exception extends \Neos\Flow\Exception
 {

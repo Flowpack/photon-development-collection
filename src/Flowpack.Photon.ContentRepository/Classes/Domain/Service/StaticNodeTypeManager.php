@@ -1,13 +1,13 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Service;
+namespace Flowpack\Photon\ContentRepository\Domain\Service;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\ConfigurationManager;
-use Neos\Photon\ContentRepository\Domain\Model\StaticNodeType;
-use Neos\Photon\ContentRepository\Exception;
-use Neos\Photon\ContentRepository\Exception\NodeConfigurationException;
-use Neos\Photon\ContentRepository\Exception\NodeTypeIsFinalException;
-use Neos\Photon\ContentRepository\Exception\NodeTypeNotFoundException;
+use Flowpack\Photon\ContentRepository\Domain\Model\StaticNodeType;
+use Flowpack\Photon\ContentRepository\Exception;
+use Flowpack\Photon\ContentRepository\Exception\NodeConfigurationException;
+use Flowpack\Photon\ContentRepository\Exception\NodeTypeIsFinalException;
+use Flowpack\Photon\ContentRepository\Exception\NodeTypeNotFoundException;
 
 /**
  * @Flow\Scope("singleton")

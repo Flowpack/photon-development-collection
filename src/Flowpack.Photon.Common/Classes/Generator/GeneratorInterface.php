@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\Common\Generator;
+namespace Flowpack\Photon\Common\Generator;
 
 interface GeneratorInterface {
 

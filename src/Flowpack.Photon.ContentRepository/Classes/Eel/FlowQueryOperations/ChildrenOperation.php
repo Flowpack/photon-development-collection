@@ -1,12 +1,12 @@
 <?php
-namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
+namespace Flowpack\Photon\ContentRepository\Eel\FlowQueryOperations;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Eel\FlowQuery\FizzleParser;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Eel\FlowQuery\Operations\AbstractOperation;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Photon\ContentRepository\Utility\Nodes;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Utility\Nodes;
 
 /**
  * "children" operation working on Photon ContentRepository nodes. It iterates over all

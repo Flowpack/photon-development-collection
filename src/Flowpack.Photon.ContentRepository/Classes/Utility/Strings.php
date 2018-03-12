@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository\Utility;
+namespace Flowpack\Photon\ContentRepository\Utility;
 
 class Strings {
 

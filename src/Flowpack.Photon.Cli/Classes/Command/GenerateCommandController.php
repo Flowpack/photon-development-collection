@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\Cli\Command;
+namespace Flowpack\Photon\Cli\Command;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
@@ -12,7 +12,7 @@ class GenerateCommandController extends CommandController
 
     /**
      * @Flow\Inject
-     * @var \Neos\Photon\Common\Generator\GeneratorInterface
+     * @var \Flowpack\Photon\Common\Generator\GeneratorInterface
      */
     protected $generator;
 

@@ -1,4 +1,4 @@
-Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference:
+Flowpack.Photon.ContentRepository.Testing:Content.FusionNamespaceReference:
 
   properties:
     'namespace':
@@ -6,9 +6,9 @@ Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference:
 
   constraints:
     nodeTypes:
-      'Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition': true
+      'Flowpack.Photon.ContentRepository.Testing:Content.ObjectDefinition': true
 
-Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition:
+Flowpack.Photon.ContentRepository.Testing:Content.ObjectDefinition:
 
   properties:
     'objectName':
@@ -21,20 +21,20 @@ Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition:
     'properties':
       inline: true
       # Default type for children
-      defaultType: 'Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition'
+      defaultType: 'Flowpack.Photon.ContentRepository.Testing:Content.PropertyDefinition'
       constraints:
         nodeTypes:
-          'Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition': true
+          'Flowpack.Photon.ContentRepository.Testing:Content.PropertyDefinition': true
 
     'examples':
       inline: true
       # Default type for children
-      defaultType: 'Neos.Photon.ContentRepository.Testing:Content.CodeExample'
+      defaultType: 'Flowpack.Photon.ContentRepository.Testing:Content.CodeExample'
       constraints:
         nodeTypes:
-          'Neos.Photon.ContentRepository.Testing:Content.CodeExample': true
+          'Flowpack.Photon.ContentRepository.Testing:Content.CodeExample': true
 
-Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition:
+Flowpack.Photon.ContentRepository.Testing:Content.PropertyDefinition:
 
   properties:
 
@@ -45,7 +45,7 @@ Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition:
     'description':
       type: string
 
-Neos.Photon.ContentRepository.Testing:Content.CodeExample:
+Flowpack.Photon.ContentRepository.Testing:Content.CodeExample:
 
   properties:
 

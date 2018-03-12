@@ -1,7 +1,7 @@
 <?php
-namespace Neos\Photon\ContentRepository\Exception;
+namespace Flowpack\Photon\ContentRepository\Exception;
 
-use Neos\Photon\ContentRepository\Exception;
+use Flowpack\Photon\ContentRepository\Exception;
 
 /**
  * An Exception for node configuration errors.

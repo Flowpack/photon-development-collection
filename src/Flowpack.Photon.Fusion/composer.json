@@ -1,20 +1,20 @@
 {
     "description": "Photon Fusion based content generator",
     "type": "neos-package",
-    "name": "neos/photon-fusion",
+    "name": "flowpack/photon-fusion",
     "require": {
         "neos/flow": "~4.0",
         "neos/fusion": "~3.3",
-        "neos/photon-common": "*"
+        "flowpack/photon-common": "*"
     },
     "autoload": {
         "psr-4": {
-            "Neos\\Photon\\Fusion\\": "Classes/"
+            "Flowpack\\Photon\\Fusion\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Neos.Photon.Fusion"
+            "package-key": "Flowpack.Photon.Fusion"
         }
     },
     "suggest": {

@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
+namespace Flowpack\Photon\ContentRepository\Eel\FlowQueryOperations;
 
 /*
  * This file is part of the Neos.ContentRepository package.
@@ -16,7 +16,7 @@ use Neos\Eel\FlowQuery\FlowQueryException;
 use Neos\Eel\FlowQuery\Operations\AbstractOperation;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\ObjectAccess;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * Used to access properties of a ContentRepository Node. If the property mame is

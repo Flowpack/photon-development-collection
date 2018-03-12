@@ -1,10 +1,10 @@
 <?php
-namespace Neos\Photon\ContentRepository\Tests\Functional\Repository;
+namespace Flowpack\Photon\ContentRepository\Tests\Functional\Repository;
 
 use Neos\Flow\Tests\FunctionalTestCase;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Photon\ContentRepository\Domain\Repository\NodeRepository;
-use Neos\Photon\ContentRepository\Utility\Nodes;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Repository\NodeRepository;
+use Flowpack\Photon\ContentRepository\Utility\Nodes;
 
 class NodeRepositoryTest extends FunctionalTestCase
 {
@@ -106,7 +106,7 @@ class NodeRepositoryTest extends FunctionalTestCase
     {
         $nodeType = $fileNode->getNodeType();
         $this->assertNotNull($nodeType, 'File node returns node type');
-        $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.FusionNamespaceReference', $nodeType->getName(), 'Node type name matches');
+        $this->assertSame('Flowpack.Photon.ContentRepository.Testing:Content.FusionNamespaceReference', $nodeType->getName(), 'Node type name matches');
     }
 
     /**
@@ -197,7 +197,7 @@ class NodeRepositoryTest extends FunctionalTestCase
         $this->assertCount(3, $childNodes, 'Child nodes count matches');
 
         foreach ($childNodes as $childNode) {
-            $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.PropertyDefinition', $childNode->getNodeType()->getName());
+            $this->assertSame('Flowpack.Photon.ContentRepository.Testing:Content.PropertyDefinition', $childNode->getNodeType()->getName());
         }
 
         return $childNodes;
@@ -212,6 +212,6 @@ class NodeRepositoryTest extends FunctionalTestCase
         $parent = $inlineNode->getParent();
         $this->assertTrue($parent !== null, 'Parent node is not null');
         $this->assertSame('array', $parent->getNodeName());
-        $this->assertSame('Neos.Photon.ContentRepository.Testing:Content.ObjectDefinition', $parent->getNodeType()->getName());
+        $this->assertSame('Flowpack.Photon.ContentRepository.Testing:Content.ObjectDefinition', $parent->getNodeType()->getName());
     }
 }

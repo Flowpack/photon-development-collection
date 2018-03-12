@@ -1,4 +1,4 @@
-Neos.Photon.Cli |version| Documentation
+Flowpack.Photon.Cli |version| Documentation
 ==================================================================================================
 
 This documentation covering version |release| has been rendered at: |today|

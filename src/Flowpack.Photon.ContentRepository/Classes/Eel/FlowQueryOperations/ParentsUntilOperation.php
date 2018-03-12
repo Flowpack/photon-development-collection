@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
+namespace Flowpack\Photon\ContentRepository\Eel\FlowQueryOperations;
 
 /*
  * This file is part of the Neos.ContentRepository package.
@@ -14,7 +14,7 @@ namespace Neos\Photon\ContentRepository\Eel\FlowQueryOperations;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Eel\FlowQuery\Operations\AbstractOperation;
 use Neos\Flow\Annotations as Flow;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * "parentsUntil" operation working on ContentRepository nodes. It iterates over all

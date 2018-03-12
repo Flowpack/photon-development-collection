@@ -1,9 +1,9 @@
 <?php
-namespace Neos\Photon\Fusion\FusionObjects;
+namespace Flowpack\Photon\Fusion\FusionObjects;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Fusion\FusionObjects\AbstractFusionObject;
-use Neos\Photon\Common\Generator\FileResult;
+use Flowpack\Photon\Common\Generator\FileResult;
 
 class FilePublisherImplementation extends AbstractFusionObject {
 

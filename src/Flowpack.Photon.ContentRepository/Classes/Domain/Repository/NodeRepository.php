@@ -1,11 +1,11 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Repository;
+namespace Flowpack\Photon\ContentRepository\Domain\Repository;
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Photon\ContentRepository\Domain\Model\Context;
-use Neos\Photon\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Photon\ContentRepository\Domain\Service\NodeResolver;
-use Neos\Photon\ContentRepository\Exception;
+use Flowpack\Photon\ContentRepository\Domain\Model\Context;
+use Flowpack\Photon\ContentRepository\Domain\Model\NodeInterface;
+use Flowpack\Photon\ContentRepository\Domain\Service\NodeResolver;
+use Flowpack\Photon\ContentRepository\Exception;
 
 class NodeRepository
 {

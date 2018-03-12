@@ -1,18 +1,18 @@
 {
     "description": "Photon common",
     "type": "neos-package",
-    "name": "neos/photon-common",
+    "name": "flowpack/photon-common",
     "require": {
         "neos/flow": "~4.0"
     },
     "autoload": {
         "psr-4": {
-            "Neos\\Photon\\Common\\": "Classes/"
+            "Flowpack\\Photon\\Common\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Neos.Photon.Common"
+            "package-key": "Flowpack.Photon.Common"
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository\Domain\Model;
+namespace Flowpack\Photon\ContentRepository\Domain\Model;
 
 interface NodeInterface
 {

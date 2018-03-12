@@ -1,5 +1,5 @@
 <?php
-namespace Neos\Photon\ContentRepository;
+namespace Flowpack\Photon\ContentRepository;
 
 use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Core\Booting\Sequence;
