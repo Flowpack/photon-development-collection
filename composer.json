@@ -15,7 +15,9 @@
         "flowpack/photon-common": "@dev",
         "flowpack/photon-fusion": "@dev",
         "flowpack/photon-contentrepository": "@dev",
-        "flowpack/photon-cli": "@dev"
+        "flowpack/photon-cli": "@dev",
+
+        "flowpack/photon-demo": "@dev"
     },
     "require-dev": {
         "neos/kickstarter": "~4.3.0",

@@ -1,0 +1,46 @@
+Flowpack.Photon.Demo:Content.FusionNamespaceReference:
+
+  properties:
+    'namespace':
+      type: string
+
+Flowpack.Photon.Demo:Content.ObjectDefinition:
+
+  properties:
+    'objectName':
+      type: string
+    'description':
+      type: string
+
+  childNodes:
+
+    'properties':
+      inline: true
+      # Default type for children
+      defaultType: 'Flowpack.Photon.Demo:Content.PropertyDefinition'
+
+    'examples':
+      inline: true
+      # Default type for children
+      defaultType: 'Flowpack.Photon.Demo:Content.CodeExample'
+
+Flowpack.Photon.Demo:Content.PropertyDefinition:
+
+  properties:
+
+    'name':
+      type: string
+    'type':
+      type: string
+    'description':
+      type: string
+
+Flowpack.Photon.Demo:Content.CodeExample:
+
+  properties:
+
+    'language':
+      type: string
+      defaultValue: 'fusion'
+    'code':
+      type: string

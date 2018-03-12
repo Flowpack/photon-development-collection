@@ -1,0 +1,19 @@
+{
+    "description": "Photon Demo content package",
+    "type": "photon-content",
+    "name": "flowpack/photon-demo",
+    "license": "MIT",
+    "require": {
+        "flowpack/photon-common": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flowpack\\Photon\\Demo\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Flowpack.Photon.Demo"
+        }
+    }
+}

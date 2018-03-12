@@ -1,0 +1,35 @@
+__type: 'Flowpack.Photon.Demo:Content.ObjectDefinition'
+
+objectName: 'Array'
+
+description: Render multiple ordered definitions, returns <code>string</code>
+
+__childNodes:
+  properties:
+    __childNodes:
+      -
+        name: '[key]'
+        type: string
+        description: A nested definition that evaluates to a string
+      -
+        name: '[key].@position'
+        type: ''
+        description: Define the ordering of the element
+      -
+        name: '@ignoreProperties'
+        type: array
+        description: List of properties ignored by rendering
+
+  examples:
+    __childNodes:
+      -
+        code: |
+          output = Neos.Fusion:Array {
+            world = 'world!'
+            hello = Neos.Fusion:Value {
+              value = 'Hello'
+              @position = 'start'
+            }
+            goodbye = 'Bye!'
+            @ignoreProperties = ${['goodbye']}
+          }

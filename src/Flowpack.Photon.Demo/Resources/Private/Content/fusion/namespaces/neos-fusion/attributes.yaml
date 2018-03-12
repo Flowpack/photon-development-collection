@@ -1,0 +1,29 @@
+__type: 'Flowpack.Photon.Demo:Content.ObjectDefinition'
+
+objectName: 'Attributes'
+
+description: Render HTML tag attributes in an extensible way
+
+__childNodes:
+  properties:
+    __childNodes:
+      -
+        name: '[key]'
+        type: mixed
+        description: The attribute name <code>[key]</code> and value, array values will be joined with whitespace
+      -
+        name: '@allowEmpty'
+        type: boolean
+        description: Whether empty attributes (HTML5 syntax) should be allowed
+
+  examples:
+    __childNodes:
+      -
+        code: |
+          output = Neos.Fusion:Attributes {
+            id = 'message'
+            class = Neos.Fusion:RawArray {
+              alert = 'alert'
+              alert-error = 'alert-error'
+            }
+          }
