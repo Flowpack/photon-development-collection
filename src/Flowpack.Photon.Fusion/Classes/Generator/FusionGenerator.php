@@ -35,14 +35,16 @@ class FusionGenerator implements GeneratorInterface {
      */
     protected $packageManager;
 
-    public function generate(string $packageKey, string $targetName): array
+    public function generate(string $packageKey, string $targetName, ?string $contentPath): array
     {
         $fusionConfiguration = $this->fusionConfigurationProvider->getMergedFusionObjectTree($packageKey);
         $runtime = $this->runtimeFactory->create($fusionConfiguration);
 
         $package = $this->packageManager->getPackage($packageKey);
-        $packageContentPath = $package->getResourcesPath() . '/Private/Content';
-        $rootNode = $this->nodeRepository->getRootNode($packageContentPath);
+        if ($contentPath === null) {
+            $contentPath = $package->getResourcesPath() . '/Private/Content';
+        }
+        $rootNode = $this->nodeRepository->getRootNode($contentPath);
 
         $runtime->pushContextArray([
             'target' => $targetName,
