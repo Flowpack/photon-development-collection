@@ -16,5 +16,8 @@
         "neos": {
             "package-key": "Neos.Photon.Fusion"
         }
+    },
+    "suggest": {
+        "packagefactory/atomicfusion-afx": "Simplifies rendering with Fusion by using a JSX inspired syntax"
     }
 }
