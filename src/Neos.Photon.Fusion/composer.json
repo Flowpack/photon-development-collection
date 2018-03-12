@@ -18,6 +18,6 @@
         }
     },
     "suggest": {
-        "packagefactory/atomicfusion-afx": "Simplifies rendering with Fusion by using a JSX inspired syntax"
+        "neos/fusion-afx": "Simplifies rendering with Fusion by using a JSX inspired syntax"
     }
 }
