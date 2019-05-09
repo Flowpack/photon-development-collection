@@ -1,12 +1,20 @@
-prototype(Flowpack.Photon.Demo:Publisher.Book) < prototype(Flowpack.Photon.Fusion:PublishCollection) {
-    collection = ${q(root).find('book').children()}
+prototype(Flowpack.Photon.Demo:Publisher.Book) < prototype(Neos.Fusion:PublishArray) {
+    css = Flowpack.Photon.Fusion:ResourcesPublisher {
+        path = 'resource://Flowpack.Photon.Demo/Private/Fixtures/book/OPS/css'
+        filter = '*.css'
+        target = 'css/'
+    }
 
-    itemName = 'node'
-    itemRenderer = Flowpack.Photon.Fusion:FilePublisher {
-        _filename = ${q(node).property('chapter') || q(node).property('title')}
+    documents = Flowpack.Photon.Fusion:PublishCollection {
+        collection = ${q(root).find('book').children()}
 
-        filename = ${Photon.Slug.generate(this._filename) + '.html'}
+        itemName = 'node'
+        itemRenderer = Flowpack.Photon.Fusion:FilePublisher {
+            _filename = ${q(node).property('chapter') || q(node).property('title')}
 
-        content = Flowpack.Photon.Fusion:ContentRenderer
+            filename = ${Photon.Slug.generate(this._filename) + '.html'}
+
+            content = Flowpack.Photon.Fusion:ContentRenderer
+        }
     }
 }

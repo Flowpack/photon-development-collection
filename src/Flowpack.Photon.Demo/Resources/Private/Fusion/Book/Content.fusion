@@ -22,7 +22,10 @@ prototype(Flowpack.Photon.Demo:Content.Book.Infos) < prototype(Neos.Fusion:Compo
 }
 
 prototype(Flowpack.Photon.Demo:Content.Book.Logo) < prototype(Neos.Fusion:Component) {
-    image = ${q(node).property('image')}
+    image = Flowpack.Photon.Fusion:StaticAsset {
+        source = ${q(node).property('image')}
+        target = 'images/'
+    }
     alt = ${q(node).property('alt')}
     title = ${q(node).property('title')}
 

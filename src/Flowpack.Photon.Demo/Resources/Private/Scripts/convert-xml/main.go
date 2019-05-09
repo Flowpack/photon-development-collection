@@ -127,6 +127,10 @@ func extractContent(doc *goquery.Document) ([]interface{}, error) {
 
 	doc.Find(".body > .logo").Each(func(i int, sel *goquery.Selection) {
 		imgEl := sel.Find("img")
+		image := imgEl.AttrOr("src", "")
+		if image != "" {
+			image = "resource://Flowpack.Photon.Demo/Private/Fixtures/book/OPS/" + image
+		}
 		node := struct {
 			Type  string `yaml:"__type"`
 			Image string `yaml:"image"`
@@ -134,7 +138,7 @@ func extractContent(doc *goquery.Document) ([]interface{}, error) {
 			Title string `yaml:"title"`
 		}{
 			Type:  "Flowpack.Photon.Demo:Content.Book.Logo",
-			Image: imgEl.AttrOr("src", ""),
+			Image: image,
 			Alt:   imgEl.AttrOr("alt", ""),
 			Title: imgEl.AttrOr("title", ""),
 		}

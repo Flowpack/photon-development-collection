@@ -6,6 +6,7 @@ prototype(Flowpack.Photon.Demo:Document.Book.Page) < prototype(Neos.Fusion:Compo
             <head>
                 <meta charset="utf-8"/>
                 <title>{props.title}</title>
+                <link rel="stylesheet" href="css/page.css" />
             </head>
             <body>
                 <main>

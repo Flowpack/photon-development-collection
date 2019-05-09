@@ -5,7 +5,7 @@ __childNodes:
   content:
     __childNodes:
     - __type: Flowpack.Photon.Demo:Content.Book.Logo
-      image: images/logo-feedbooks-tiny.png
+      image: resource://Flowpack.Photon.Demo/Private/Fixtures/book/OPS/images/logo-feedbooks-tiny.png
       alt: Feedbooks
       title: Feedbooks
     - __type: Flowpack.Photon.Demo:Content.Book.Infos
