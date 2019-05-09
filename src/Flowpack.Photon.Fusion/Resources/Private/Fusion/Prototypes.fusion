@@ -1,3 +1,11 @@
 prototype(Flowpack.Photon.Fusion:FilePublisher) {
     @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\FilePublisherImplementation'
+
+    directory = ${outputDirectory}
+    filename = ''
+    content = ''
+}
+
+prototype(Flowpack.Photon.Fusion:PublishCollection) {
+    @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\PublishCollectionImplementation'
 }

@@ -8,6 +8,10 @@ Flowpack:
           Neos.Fusion: true
           Flowpack.Photon.Fusion: true
 
+Neos:
   Fusion:
     rendering:
       exceptionHandler: 'Neos\Fusion\Core\ExceptionHandlers\BubblingHandler'
+
+    defaultContext:
+      'Photon.Slug': 'Flowpack\Photon\Fusion\Eel\SlugHelper'

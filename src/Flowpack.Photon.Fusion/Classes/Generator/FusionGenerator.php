@@ -1,15 +1,18 @@
 <?php
 namespace Flowpack\Photon\Fusion\Generator;
 
+use Flowpack\Photon\Fusion\Exception\GeneratorException;
+use Flowpack\Photon\Fusion\Exception\InvalidGeneratorResultException;
 use Neos\Flow\Annotations as Flow;
-use Flowpack\Photon\Common\Generator\FileResult;
 use Flowpack\Photon\Common\Generator\GeneratorInterface;
 use Flowpack\Photon\ContentRepository\Domain\Repository\NodeRepository;
+use Neos\Fusion\Exception\RuntimeException;
 
 /**
  * @Flow\Scope("singleton")
  */
-class FusionGenerator implements GeneratorInterface {
+class FusionGenerator implements GeneratorInterface
+{
 
     /**
      * @Flow\Inject
@@ -35,8 +38,13 @@ class FusionGenerator implements GeneratorInterface {
      */
     protected $packageManager;
 
-    public function generate(string $packageKey, string $targetName, ?string $contentPath): array
+    public function generate(string $packageKey, string $targetName, ?string $contentPath, ?string $outputDirectory): array
     {
+        if (!$this->packageManager->isPackageActive($packageKey)) {
+            throw new \Flowpack\Photon\Fusion\Exception\InvalidPackageKeyException(sprintf('Package key "%s" is not active',
+                $packageKey), 1556284688);
+        }
+
         $fusionConfiguration = $this->fusionConfigurationProvider->getMergedFusionObjectTree($packageKey);
         $runtime = $this->runtimeFactory->create($fusionConfiguration);
 
@@ -46,13 +54,26 @@ class FusionGenerator implements GeneratorInterface {
         }
         $rootNode = $this->nodeRepository->getRootNode($contentPath);
 
+        if ($outputDirectory !== null) {
+            \Neos\Utility\Files::createDirectoryRecursively($outputDirectory);
+        }
+
         $runtime->pushContextArray([
             'target' => $targetName,
-            'root' => $rootNode
+            'root' => $rootNode,
+            'outputDirectory' => $outputDirectory
         ]);
         /** @var array $results */
-        $results = $runtime->render('output');
+        try {
+            $results = $runtime->render('output');
+        } catch (RuntimeException $e) {
+            throw new GeneratorException(sprintf("Fusion exception at path:\n  %s\n\n%s", $e->getFusionPath(), $e->getPrevious()->getMessage()));
+        }
         $runtime->popContext();
+
+        if (!is_array($results)) {
+            throw new InvalidGeneratorResultException('results was not an array');
+        }
 
         return $results;
     }

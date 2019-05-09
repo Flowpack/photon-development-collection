@@ -4,6 +4,7 @@ namespace Flowpack\Photon\Fusion\FusionObjects;
 use Neos\Flow\Annotations as Flow;
 use Neos\Fusion\FusionObjects\AbstractFusionObject;
 use Flowpack\Photon\Common\Generator\FileResult;
+use Neos\Utility\Files;
 
 class FilePublisherImplementation extends AbstractFusionObject {
 
@@ -11,11 +12,13 @@ class FilePublisherImplementation extends AbstractFusionObject {
     {
         $filename = $this->fusionValue('filename');
         $content = $this->fusionValue('content');
+        $directory = $this->fusionValue('directory');
 
-        // TODO Allow to specify output directory
-        file_put_contents($filename, $content);
+        $path = Files::concatenatePaths([$directory, $filename]);
 
-        return [new FileResult($filename)];
+        file_put_contents($path, $content);
+
+        return [new FileResult($path)];
     }
 
 }

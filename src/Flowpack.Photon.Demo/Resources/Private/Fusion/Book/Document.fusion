@@ -1,0 +1,45 @@
+prototype(Flowpack.Photon.Demo:Document.Book.Page) < prototype(Neos.Fusion:Component) {
+    title = ${q(node).property('title')}
+
+    renderer = afx`
+        <html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <title>{props.title}</title>
+            </head>
+            <body>
+                <main>
+                    <Flowpack.Photon.Fusion:ContentCollection nodePath="content" />
+                </main>
+            </body>
+        </html>
+    `
+    renderer.@process.addDoctype = ${'<!DOCTYPE html>' + value}
+}
+
+prototype(Flowpack.Photon.Demo:Document.Book.Chapter) < prototype(Neos.Fusion:Component) {
+    chapter = ${q(node).property('chapter')}
+    title = ${q(node).property('title')}
+    text = ${q(node).property('text')}
+
+    renderer = afx`
+        <html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <title>{props.chapter} - {props.title}</title>
+            </head>
+            <body>
+                <header>
+                    <h1>{props.chapter}</h1>
+                    <h2>{props.title}</h2>
+                </header>
+                <hr/>
+                <main>
+                    {props.text}
+                </main>
+            </body>
+        </html>
+    `
+    renderer.@process.addDoctype = ${'<!DOCTYPE html>' + value}
+}
+

@@ -1,12 +1,14 @@
 Flowpack.Photon.Demo:Content.FusionNamespaceReference:
 
   properties:
+
     'namespace':
       type: string
 
 Flowpack.Photon.Demo:Content.ObjectDefinition:
 
   properties:
+
     'objectName':
       type: string
     'description':
@@ -43,4 +45,49 @@ Flowpack.Photon.Demo:Content.CodeExample:
       type: string
       defaultValue: 'fusion'
     'code':
+      type: string
+
+# ---
+
+Flowpack.Photon.Demo:Document.Book.Page:
+
+  properties:
+
+    'title':
+      type: string
+
+  childNodes:
+
+    'content':
+      inline: true
+
+Flowpack.Photon.Demo:Document.Book.Chapter:
+
+  properties:
+
+    'chapter':
+      type: string
+    'title':
+      type: string
+    'text':
+      type: string
+
+Flowpack.Photon.Demo:Content.Book.Headline:
+
+  properties:
+
+    'title':
+      type: string
+    'subtitle':
+      type: string
+
+Flowpack.Photon.Demo:Content.Book.Infos:
+
+  properties:
+
+    'published':
+      type: integer
+    'categories':
+      type: array<string>
+    'source':
       type: string

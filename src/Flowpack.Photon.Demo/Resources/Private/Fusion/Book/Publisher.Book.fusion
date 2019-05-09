@@ -1,0 +1,12 @@
+prototype(Flowpack.Photon.Demo:Publisher.Book) < prototype(Flowpack.Photon.Fusion:PublishCollection) {
+    collection = ${q(root).find('book').children()}
+
+    itemName = 'node'
+    itemRenderer = Flowpack.Photon.Fusion:FilePublisher {
+        _filename = ${q(node).property('chapter') || q(node).property('title')}
+
+        filename = ${Photon.Slug.generate(this._filename) + '.html'}
+
+        content = Flowpack.Photon.Demo:Document.Book.Chapter
+    }
+}

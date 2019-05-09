@@ -4,7 +4,9 @@
     "name": "flowpack/photon-demo",
     "license": "MIT",
     "require": {
-        "flowpack/photon-common": "*"
+        "flowpack/photon-common": "*",
+
+        "neos/fusion-afx": "~1.0"
     },
     "autoload": {
         "psr-4": {

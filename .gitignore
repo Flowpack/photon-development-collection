@@ -9,3 +9,7 @@
 /flow
 /flow.bat
 /composer.lock
+
+/src/Flowpack.Photon.Demo/Resources/Private/Fixtures/book/
+/src/Flowpack.Photon.Demo/Resources/Private/Scripts/convert-xml/convert-xml
+

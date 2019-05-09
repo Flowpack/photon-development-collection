@@ -6,7 +6,8 @@
     "require": {
         "neos/flow": "~4.0",
         "neos/fusion": "~3.3",
-        "flowpack/photon-common": "*"
+        "flowpack/photon-common": "*",
+        "ausi/slug-generator": "~1.0"
     },
     "autoload": {
         "psr-4": {

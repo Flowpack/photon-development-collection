@@ -1,0 +1,11 @@
+prototype(Flowpack.Photon.Demo:Publisher.FusionNamespaceReference) < prototype(Flowpack.Photon.Fusion:FilePublisher) {
+    filename = 'fusion-namespaces.html'
+
+    content = Neos.Fusion:Collection {
+        _fusionNamespaces = ${q(root).find('fusion/namespaces').children()}
+
+        collection = ${this._fusionNamespaces}
+        itemName = 'node'
+        itemRenderer = Flowpack.Photon.Demo:Content.FusionNamespaceReference
+    }
+}

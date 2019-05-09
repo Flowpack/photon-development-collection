@@ -1,0 +1,78 @@
+prototype(Flowpack.Photon.Demo:Content.FusionNamespaceReference) < prototype(Neos.Fusion:Tag) {
+    @context {
+        namespaceSlug = ${String.toLowerCase(String.replace(q(node).property('namespace'), '.', ''))}
+    }
+
+    tagName = 'section'
+    attributes {
+        id = ${'fusion-objects-' + namespaceSlug}
+    }
+    content = Neos.Fusion:Collection {
+        collection = ${q(node).children()}
+        itemName = 'node'
+        itemRenderer = Flowpack.Photon.Demo:Content.ObjectDefinition
+    }
+}
+
+prototype(Flowpack.Photon.Demo:Content.ObjectDefinition) < prototype(Neos.Fusion:Tag) {
+    tagName = 'div'
+    attributes {
+        id = ${namespaceSlug + '-' + String.toLowerCase(String.replace(q(node).property('objectName'), '.', ''))}
+        class = 'object-definition'
+    }
+    // TODO AFX this!
+    content = Neos.Fusion:Array {
+        header = Neos.Fusion:Tag {
+            tagName = 'h2'
+            content = ${q(node).property('objectName')}
+        }
+        description = Neos.Fusion:Tag {
+            tagName = 'p'
+            attributes.class = 'description'
+            content = ${q(node).property('description')}
+        }
+        content = Neos.Fusion:Array {
+            properties = Neos.Fusion:Tag {
+                tagName = 'table'
+                attributes.class = 'properties'
+                content = Neos.Fusion:Collection {
+                    collection = ${q(node).find('properties').children()}
+                    itemName = 'node'
+                    itemRenderer = Neos.Fusion:Tag {
+                        tagName = 'tr'
+                        content = Neos.Fusion:Array {
+                            name = Neos.Fusion:Tag {
+                                tagName = 'td'
+                                attributes.class = 'name'
+                                content = ${q(node).property('name')}
+                            }
+                            type = Neos.Fusion:Tag {
+                                tagName = 'td'
+                                attributes.class = 'type'
+                                content = ${q(node).property('type')}
+                            }
+                            description = Neos.Fusion:Tag {
+                                tagName = 'td'
+                                attributes.class = 'description'
+                                content = ${q(node).property('description')}
+                            }
+                        }
+                    }
+                }
+            }
+            examples = Neos.Fusion:Collection {
+                collection = ${q(node).find('examples').children()}
+                itemName = 'node'
+                itemRenderer = Neos.Fusion:Tag {
+                    tagName = 'pre'
+                    content = Neos.Fusion:Tag {
+                        tagName = 'code'
+                        attributes.class = 'hljs fusion'
+
+                        content = ${q(node).property('code')}
+                    }
+                }
+            }
+        }
+    }
+}
