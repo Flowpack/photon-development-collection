@@ -1,3 +1,6 @@
 __type: Flowpack.Photon.Demo:Document.Book.Page
 title: Feedbooks
 text: ""
+__childNodes:
+  content:
+    __childNodes: []

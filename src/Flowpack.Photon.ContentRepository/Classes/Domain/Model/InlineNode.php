@@ -4,7 +4,7 @@ namespace Flowpack\Photon\ContentRepository\Domain\Model;
 use Flowpack\Photon\ContentRepository\Domain\Service\NodeResolver;
 use Flowpack\Photon\ContentRepository\Utility\Strings;
 
-class InlineNode implements NodeInterface
+class InlineNode implements NodeInterface, \JsonSerializable
 {
 
     /**
@@ -95,4 +95,13 @@ class InlineNode implements NodeInterface
         return null;
     }
 
+    public function jsonSerialize()
+    {
+        return [
+            'nodePath' => $this->nodePath,
+            'nodeName' => $this->nodeName,
+            'nodeTypeName' => $this->nodeType->getName(),
+            'nodeData' => $this->nodeData,
+        ];
+    }
 }

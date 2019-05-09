@@ -1,0 +1,55 @@
+Flowpack.Photon.Demo:Document.Book.Page:
+
+  properties:
+
+    'title':
+      type: string
+
+  childNodes:
+
+    'content':
+      inline: true
+
+Flowpack.Photon.Demo:Document.Book.Chapter:
+
+  properties:
+
+    'chapter':
+      type: string
+    'title':
+      type: string
+    'text':
+      type: string
+
+Flowpack.Photon.Demo:Content.Book.Headline:
+
+  properties:
+
+    'title':
+      type: string
+    'subtitle':
+      type: string
+
+Flowpack.Photon.Demo:Content.Book.Infos:
+
+  properties:
+
+    'published':
+      type: integer
+    'categories':
+      type: array<string>
+    'source':
+      type: string
+
+Flowpack.Photon.Demo:Content.Book.Logo:
+
+  properties:
+
+    'image':
+      # TODO Add static asset reference type
+      type: string
+    'alt':
+      type: string
+    'title':
+      type: string
+

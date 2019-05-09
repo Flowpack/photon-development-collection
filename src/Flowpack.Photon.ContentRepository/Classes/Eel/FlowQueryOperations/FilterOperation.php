@@ -88,7 +88,7 @@ class FilterOperation extends \Neos\Eel\FlowQuery\Operations\Object\FilterOperat
      */
     protected function matchesPropertyNameFilter($element, $propertyNameFilter)
     {
-        return ($element->getName() === $propertyNameFilter);
+        return ($element->getNodeName() === $propertyNameFilter);
     }
 
     /**
@@ -132,7 +132,7 @@ class FilterOperation extends \Neos\Eel\FlowQuery\Operations\Object\FilterOperat
         if ($operator === 'instanceof' && $value instanceof NodeInterface) {
             if ($this->operandIsSimpleType($operand)) {
                 return $this->handleSimpleTypeOperand($operand, $value);
-            } elseif ($operand === NodeInterface::class || $operand === Node::class) {
+            } elseif ($operand === NodeInterface::class) {
                 return true;
             } else {
                 $isOfType = $value->getNodeType()->isOfType($operand[0] === '!' ? substr($operand, 1) : $operand);

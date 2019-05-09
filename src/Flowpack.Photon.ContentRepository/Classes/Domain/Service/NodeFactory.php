@@ -71,7 +71,7 @@ class NodeFactory
 
     public function inlineNode(Context $ctx, string $nodePath, string $childNodeName, array $childNodesData, array $childNodeConfiguration)
     {
-        $nodeTypeName = $childNodeConfiguration['type'] ?? 'unstructured';
+        $nodeTypeName = $childNodesData['__type'] ?? $childNodeConfiguration['type'] ?? 'unstructured';
         $nodeType = $this->staticNodeTypeManager->getNodeType($nodeTypeName);
 
         return new InlineNode(

@@ -1,3 +1,16 @@
 __type: Flowpack.Photon.Demo:Document.Book.Page
 title: Title Page
 text: ""
+__childNodes:
+  content:
+    __childNodes:
+    - __type: Flowpack.Photon.Demo:Content.Book.Logo
+      image: images/logo-feedbooks-tiny.png
+      alt: Feedbooks
+      title: Feedbooks
+    - __type: Flowpack.Photon.Demo:Content.Book.Infos
+      published: "1897"
+      categories:
+      - Fiction
+      - Fantasy
+      source: Wikisource

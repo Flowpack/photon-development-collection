@@ -1,3 +1,6 @@
 __type: Flowpack.Photon.Demo:Document.Book.Page
 title: About
 text: ""
+__childNodes:
+  content:
+    __childNodes: []

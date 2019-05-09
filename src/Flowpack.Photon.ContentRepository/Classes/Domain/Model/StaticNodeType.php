@@ -2,7 +2,6 @@
 namespace Flowpack\Photon\ContentRepository\Domain\Model;
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Utility\ObjectAccess;
 use Neos\Utility\Arrays;
 use Neos\Utility\PositionalArraySorter;
@@ -49,15 +48,9 @@ class StaticNodeType
     /**
      * node types this node type directly inherits from
      *
-     * @var array<\Neos\ContentRepository\Domain\Model\NodeType>
+     * @var array<StaticNodeType>
      */
     protected $declaredSuperTypes;
-
-    /**
-     * @Flow\Inject
-     * @var ObjectManagerInterface
-     */
-    protected $objectManager;
 
     /**
      * @Flow\Inject

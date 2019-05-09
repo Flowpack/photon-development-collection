@@ -9,3 +9,25 @@ prototype(Flowpack.Photon.Fusion:FilePublisher) {
 prototype(Flowpack.Photon.Fusion:PublishCollection) {
     @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\PublishCollectionImplementation'
 }
+
+prototype(Flowpack.Photon.Fusion:ContentRenderer) < prototype(Neos.Fusion:Renderer) {
+    type = ${node.nodeType.name}
+}
+
+prototype(Flowpack.Photon.Fusion:ContentCollection) < prototype(Neos.Fusion:Collection) {
+    nodePath = ''
+
+    collectionNode = ${q(node).children(this.nodePath)}
+    collection = ${this.collectionNode.children()}
+
+    itemName = 'node'
+    itemRenderer = Flowpack.Photon.Fusion:ContentRenderer
+}
+
+prototype(Flowpack.Photon.Fusion:Debug) {
+    @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\DebugImplementation'
+
+    value = ${value}
+    title = null
+    message = ${Photon.Debug.dump(value, this.title)}
+}

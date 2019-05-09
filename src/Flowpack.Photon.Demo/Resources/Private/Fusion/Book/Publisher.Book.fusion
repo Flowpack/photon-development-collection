@@ -7,6 +7,6 @@ prototype(Flowpack.Photon.Demo:Publisher.Book) < prototype(Flowpack.Photon.Fusio
 
         filename = ${Photon.Slug.generate(this._filename) + '.html'}
 
-        content = Flowpack.Photon.Demo:Document.Book.Chapter
+        content = Flowpack.Photon.Fusion:ContentRenderer
     }
 }
