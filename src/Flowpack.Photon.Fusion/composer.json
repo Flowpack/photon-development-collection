@@ -4,8 +4,8 @@
     "name": "flowpack/photon-fusion",
     "license": "MIT",
     "require": {
-        "neos/flow": "~4.0,~5.0",
-        "neos/fusion": "~3.3,~4.0",
+        "neos/flow": "~4.0 || ~5.0",
+        "neos/fusion": "~3.3 || ~4.0",
         "flowpack/photon-common": "*",
         "ausi/slug-generator": "~1.0"
     },
