@@ -26,7 +26,7 @@ prototype(Flowpack.Photon.Fusion:PublishCollection) {
     @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\PublishCollectionImplementation'
 }
 
-prototype(Neos.Fusion:PublishArray) {
+prototype(Flowpack.Photon.Fusion:PublishArray) {
     @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\PublishArrayImplementation'
 }
 
@@ -50,4 +50,11 @@ prototype(Flowpack.Photon.Fusion:Debug) {
     value = ${value}
     title = null
     message = ${Photon.Debug.dump(value, this.title)}
+}
+
+prototype(Flowpack.Photon.Fusion:DataProvider.StaticContentRepository) {
+    @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\DataProvider\\StaticContentRepositoryImplementation'
+
+    contentPath = ${options.contentPath}
+    packageKey = ${packageKey}
 }

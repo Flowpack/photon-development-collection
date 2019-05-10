@@ -27,15 +27,18 @@ class GenerateCommandController extends CommandController
      *
      * @param string $packageKey Package key of a package declaring the rendering and content (can be overridden by contentPath)
      * @param string $targetName Name of the publishing target to generate
-     * @param string $contentPath Optional path to static content if not using a package
+     * @param array<string> $options Optional options, passed as key:value comma separated
      * @param string $outputDirectory Output base directory
      * @return void
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      */
-    public function contentCommand(string $packageKey, string $targetName = 'default', string $contentPath = null, string $outputDirectory = null): void
+    public function contentCommand(string $packageKey, string $targetName = 'default', array $options = [], string $outputDirectory = null): void
     {
+
+        $parsedOptions = $this->parseOptions($options);
+
         try {
-            $results = $this->generator->generate($packageKey, $targetName, $contentPath, $outputDirectory);
+            $results = $this->generator->generate($packageKey, $targetName, $parsedOptions);
         } catch (InvalidGeneratorResultException $e) {
             $this->outputFormatted('<error>Target "%s" did not produce valid results</error>', [$targetName]);
             $this->quit(1);
@@ -46,7 +49,7 @@ class GenerateCommandController extends CommandController
             $this->outputFormatted('<error>Error generating output: %s</error>', [$e->getMessage()]);
             $this->quit(3);
         } catch (\Exception $e) {
-            $this->outputFormatted('<error>Unexpected error: %s</error>', [$e->getMessage()]);
+            $this->outputFormatted('<error>Unexpected error: (%d) %s</error>', [$e->getCode(), $e->getMessage()]);
             $this->quit(255);
         }
 
@@ -54,5 +57,15 @@ class GenerateCommandController extends CommandController
         foreach ($results as $result) {
             $this->outputLine((string)$result);
         }
+    }
+
+    private function parseOptions(array $options): array
+    {
+        $parsedOptions = [];
+        foreach ($options as $rawOption) {
+            list($key, $value) = explode(':', $rawOption, 2);
+            $parsedOptions[$key] = $value;
+        }
+        return $parsedOptions;
     }
 }

@@ -5,8 +5,7 @@
     "license": "MIT",
     "require": {
         "neos/flow": "~4.0",
-        "flowpack/photon-common": "*",
-        "flowpack/photon-contentrepository": "*"
+        "flowpack/photon-common": "*"
     },
     "autoload": {
         "psr-4": {

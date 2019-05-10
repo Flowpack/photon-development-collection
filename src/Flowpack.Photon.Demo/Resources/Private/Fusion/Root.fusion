@@ -2,6 +2,10 @@ include: **/*.fusion
 
 output = Neos.Fusion:Case {
 
+    @context {
+        root = Flowpack.Photon.Fusion:DataProvider.StaticContentRepository
+    }
+
     default {
         condition = ${target == 'default'}
         renderer = Flowpack.Photon.Demo:Publisher.FusionNamespaceReference

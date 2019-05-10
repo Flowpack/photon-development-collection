@@ -1,4 +1,4 @@
-prototype(Flowpack.Photon.Demo:Publisher.Book) < prototype(Neos.Fusion:PublishArray) {
+prototype(Flowpack.Photon.Demo:Publisher.Book) < prototype(Flowpack.Photon.Fusion:PublishArray) {
     css = Flowpack.Photon.Fusion:ResourcesPublisher {
         path = 'resource://Flowpack.Photon.Demo/Private/Fixtures/book/OPS/css'
         filter = '*.css'

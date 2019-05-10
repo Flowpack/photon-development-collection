@@ -20,6 +20,7 @@
         }
     },
     "suggest": {
+        "flowpack/photon-contentrepository": "Fully static site generator using a file based content repository",
         "neos/fusion-afx": "Simplifies rendering with Fusion by using a JSX inspired syntax"
     }
 }
