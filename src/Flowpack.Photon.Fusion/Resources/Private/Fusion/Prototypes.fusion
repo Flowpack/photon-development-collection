@@ -58,3 +58,11 @@ prototype(Flowpack.Photon.Fusion:DataProvider.StaticContentRepository) {
     contentPath = ${options.contentPath}
     packageKey = ${packageKey}
 }
+
+prototype(Flowpack.Photon.Fusion:LocalResourcePublishing) {
+    @class = 'Flowpack\\Photon\\Fusion\\FusionObjects\\LocalResourcePublishingImplementation'
+
+    renderer = ${[]}
+    publishCollections = ${null}
+    outputDirectory = ${options.outputDirectory}
+}

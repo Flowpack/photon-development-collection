@@ -1,0 +1,14 @@
+Flowpack:
+  Photon:
+    Fusion:
+
+      fusion:
+
+        autoInclude:
+          # FIXME Also test for Neos.Fusion.autoInclude in ConfigurationProvider
+          Neos.Neos: true
+          Neos.NodeTypes: true
+          Neos.NodeTypes.Navigation: true
+          Flowpack.Neos.FrontendLogin: true
+
+          Flowpack.Photon.Neos: true

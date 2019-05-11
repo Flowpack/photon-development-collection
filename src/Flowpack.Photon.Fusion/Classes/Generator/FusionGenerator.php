@@ -1,11 +1,19 @@
 <?php
 namespace Flowpack\Photon\Fusion\Generator;
 
+use Flowpack\Photon\Fusion\Http\Request;
 use Neos\Flow\Annotations as Flow;
 use Flowpack\Photon\Fusion\Exception\GeneratorException;
 use Flowpack\Photon\Fusion\Exception\InvalidGeneratorResultException;
 use Flowpack\Photon\Common\Generator\GeneratorInterface;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\ActionResponse;
+use Neos\Flow\Mvc\Controller\Arguments;
+use Neos\Flow\Mvc\Controller\ControllerContext;
+use Neos\Flow\Mvc\Routing\UriBuilder;
 use Neos\Fusion\Exception\RuntimeException;
+use Neos\Flow\Security\Context as SecurityContext;
+use Neos\Utility\ObjectAccess;
 
 /**
  * @Flow\Scope("singleton")
@@ -31,6 +39,13 @@ class FusionGenerator implements GeneratorInterface
      */
     protected $packageManager;
 
+    /**
+     * @Flow\Inject
+     * @var SecurityContext
+     */
+    protected $securityContext;
+
+
     public function generate(string $packageKey, string $targetName, array $options): array
     {
         if (!$this->packageManager->isPackageAvailable($packageKey)) {
@@ -39,7 +54,10 @@ class FusionGenerator implements GeneratorInterface
         }
 
         $fusionConfiguration = $this->fusionConfigurationProvider->getMergedFusionObjectTree($packageKey);
-        $runtime = $this->runtimeFactory->create($fusionConfiguration);
+
+        $controllerContext = $this->createControllerContextFromEnvironment();
+        $this->initializeSecurity($controllerContext);
+        $runtime = $this->runtimeFactory->create($fusionConfiguration, $controllerContext);
 
         $outputDirectory = $options['outputDirectory'] ?? '.';
         if ($outputDirectory !== null) {
@@ -66,6 +84,36 @@ class FusionGenerator implements GeneratorInterface
         }
 
         return $results;
+    }
+
+    private function initializeSecurity(ControllerContext $controllerContext): void
+    {
+        $request = $controllerContext->getRequest();
+        ObjectAccess::setProperty($this->securityContext, 'initialized', true, true);
+        $this->securityContext->setRequest($request);
+    }
+
+    private function createControllerContextFromEnvironment(): ControllerContext
+    {
+        $_SERVER['FLOW_REWRITEURLS'] = '1';
+
+        $httpRequest = Request::createFromEnvironment();
+        $httpRequest->setBaseUri('/');
+
+        $request = new ActionRequest($httpRequest);
+        $request->setControllerObjectName('Neos\Neos\Controller\Frontend\NodeController');
+        $request->setControllerActionName('show');
+        $request->setFormat('html');
+
+        $uriBuilder = new UriBuilder();
+        $uriBuilder->setRequest($request);
+
+        return new ControllerContext(
+            $request,
+            new ActionResponse(),
+            new Arguments([]),
+            $uriBuilder
+        );
     }
 
 }

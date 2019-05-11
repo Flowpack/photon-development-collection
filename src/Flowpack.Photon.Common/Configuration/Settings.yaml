@@ -4,3 +4,22 @@ Neos:
     package:
       packagesPathByType:
         photon-content: Content
+
+Flowpack:
+  Photon:
+    Common:
+
+      # Override resource settings for generators
+      resourceOverride:
+
+        targets:
+
+          localWebDirectoryStaticResourcesTarget:
+            targetOptions:
+              path: '{outputDirectory}_Resources/Static/Packages/'
+              baseUri: '/_Resources/Static/Packages/'
+
+          localWebDirectoryPersistentResourcesTarget:
+            targetOptions:
+              path: '{outputDirectory}_Resources/Persistent/'
+              baseUri: '/_Resources/Persistent/'

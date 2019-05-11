@@ -16,6 +16,9 @@ class FilePublisherImplementation extends AbstractFusionObject {
 
         $path = Files::concatenatePaths([$directory, $filename]);
 
+        $dir = dirname($path);
+        Files::createDirectoryRecursively($dir);
+
         file_put_contents($path, $content);
 
         return [new FileResult($path)];

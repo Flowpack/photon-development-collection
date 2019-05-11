@@ -12,7 +12,11 @@ class PublishArrayImplementation extends RawArrayImplementation {
      */
     public function evaluate()
     {
-        return call_user_func_array('array_merge', parent::evaluate());
+        $results = parent::evaluate();
+        if ($results === null || $results === []) {
+            return [];
+        }
+        return call_user_func_array('array_merge', $results);
     }
 
 }
