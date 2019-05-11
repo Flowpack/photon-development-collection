@@ -14,7 +14,6 @@ class StaticContentRepositoryImplementation extends AbstractFusionObject {
     protected $packageManager;
 
     /**
-     * @Flow\Inject
      * @var NodeRepository
      */
     protected $nodeRepository;
@@ -35,6 +34,11 @@ class StaticContentRepositoryImplementation extends AbstractFusionObject {
         $rootNode = $this->nodeRepository->getRootNode($contentPath);
 
         return $rootNode;
+    }
+
+    public function injectNodeRepository(NodeRepository $nodeRepository)
+    {
+        $this->nodeRepository = $nodeRepository;
     }
 
 }

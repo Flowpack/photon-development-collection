@@ -1,0 +1,20 @@
+{
+    "description": "Photon Neos integration package",
+    "type": "neos-package",
+    "name": "flowpack/photon-neos",
+    "license": "MIT",
+    "require": {
+        "flowpack/photon-fusion": "*",
+        "neos/neos": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flowpack\\Photon\\Neos\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Flowpack.Photon.Neos"
+        }
+    }
+}

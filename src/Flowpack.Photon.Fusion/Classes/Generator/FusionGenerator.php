@@ -33,8 +33,8 @@ class FusionGenerator implements GeneratorInterface
 
     public function generate(string $packageKey, string $targetName, array $options): array
     {
-        if (!$this->packageManager->isPackageActive($packageKey)) {
-            throw new \Flowpack\Photon\Fusion\Exception\InvalidPackageKeyException(sprintf('Package key "%s" is not active',
+        if (!$this->packageManager->isPackageAvailable($packageKey)) {
+            throw new \Flowpack\Photon\Fusion\Exception\InvalidPackageKeyException(sprintf('Package "%s" is not available',
                 $packageKey), 1556284688);
         }
 

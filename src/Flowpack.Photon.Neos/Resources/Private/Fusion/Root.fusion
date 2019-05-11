@@ -1,0 +1,10 @@
+include: Prototypes.fusion
+
+output = Neos.Fusion:Case {
+
+    site {
+        condition = ${target == 'site'}
+        renderer = Flowpack.Photon.Neos:Publisher.Site
+    }
+
+}
