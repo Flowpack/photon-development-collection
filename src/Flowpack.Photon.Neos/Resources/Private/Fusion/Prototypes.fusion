@@ -1,38 +1,49 @@
-prototype(Flowpack.Photon.Neos:Publisher.Site) < prototype(Flowpack.Photon.Fusion:LocalResourcePublishing) {
+prototype(Flowpack.Photon.Neos:Publisher.Site) < prototype(Neos.Fusion:Value) {
 
-    renderer = Flowpack.Photon.Fusion:PublishArray {
-        @context {
-            site = Flowpack.Photon.Neos:DataProvider.ContentRepository
-        }
+    value = Flowpack.Photon.Fusion:LocalResourcePublishing {
 
-        documents = Flowpack.Photon.Fusion:PublishCollection {
-            collection = ${q(site).find('[instanceof Neos.Neos:Document]')}
+        value = Flowpack.Photon.Fusion:PublishArray {
 
-            itemName = 'documentNode'
-            itemRenderer = Flowpack.Photon.Fusion:FilePublisher {
-                @context.node = ${documentNode}
+            // Load data
+            @context {
+                site = Flowpack.Photon.Neos:DataProvider.ContentRepository
+            }
 
-                filename = Neos.Neos:NodeUri {
-                    node = ${documentNode}
-                    format = 'html'
-                    absolute = false
+            // Publish document nodes
+            documents = Flowpack.Photon.Fusion:PublishCollection {
+                collection = ${q(site).find('[instanceof Neos.Neos:Document]')}
 
-                    @exceptionHandler = 'Neos\\Fusion\\Core\\ExceptionHandlers\\BubblingHandler'
+                itemName = 'documentNode'
 
-                    @process {
-                        addDefault = ${!value || value == '/' ? '/index.html' : value}
-                    }
-                }
+                // Publish each node as a file
+                itemRenderer = Flowpack.Photon.Fusion:FilePublisher {
+                    @context.node = ${documentNode}
 
-                content = Neos.Fusion:Renderer {
-                    type = ${q(documentNode).property('_nodeType.name')}
+                    filename = Flowpack.Photon.Neos:Helper.NodeUri
 
-                    @process.splitHttpMessage = Flowpack.Photon.Neos:HttpMessageSplitter {
-                        @process.useBody = ${value.body}
+                    // Render by prototype name
+                    content = Neos.Fusion:Renderer {
+                        type = ${q(documentNode).property('_nodeType.name')}
+
+                        @process.splitHttpMessage = Flowpack.Photon.Neos:HttpMessageSplitter {
+                            @process.useBody = ${value.body}
+                        }
                     }
                 }
             }
         }
+    }
+}
+
+prototype(Flowpack.Photon.Neos:Helper.NodeUri) < prototype(Neos.Neos:NodeUri) {
+    node = ${documentNode}
+    format = 'html'
+    absolute = false
+
+    @exceptionHandler = 'Neos\\Fusion\\Core\\ExceptionHandlers\\BubblingHandler'
+
+    @process {
+        addDefault = ${!value || value == '/' ? '/index.html' : value}
     }
 }
 

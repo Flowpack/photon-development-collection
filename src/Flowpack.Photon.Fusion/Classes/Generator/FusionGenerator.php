@@ -6,8 +6,8 @@ use Neos\Flow\Annotations as Flow;
 use Flowpack\Photon\Fusion\Exception\GeneratorException;
 use Flowpack\Photon\Fusion\Exception\InvalidGeneratorResultException;
 use Flowpack\Photon\Common\Generator\GeneratorInterface;
+use Neos\Flow\Http\Response;
 use Neos\Flow\Mvc\ActionRequest;
-use Neos\Flow\Mvc\ActionResponse;
 use Neos\Flow\Mvc\Controller\Arguments;
 use Neos\Flow\Mvc\Controller\ControllerContext;
 use Neos\Flow\Mvc\Routing\UriBuilder;
@@ -101,8 +101,10 @@ class FusionGenerator implements GeneratorInterface
         $httpRequest->setBaseUri('/');
 
         $request = new ActionRequest($httpRequest);
-        $request->setControllerObjectName('Neos\Neos\Controller\Frontend\NodeController');
-        $request->setControllerActionName('show');
+        if ($this->packageManager->isPackageAvailable('Neos.Neos')) {
+            $request->setControllerObjectName('Neos\Neos\Controller\Frontend\NodeController');
+            $request->setControllerActionName('show');
+        }
         $request->setFormat('html');
 
         $uriBuilder = new UriBuilder();
@@ -110,7 +112,7 @@ class FusionGenerator implements GeneratorInterface
 
         return new ControllerContext(
             $request,
-            new ActionResponse(),
+            new Response(),
             new Arguments([]),
             $uriBuilder
         );
