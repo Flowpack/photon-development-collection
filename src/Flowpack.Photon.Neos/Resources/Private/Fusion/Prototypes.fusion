@@ -2,7 +2,7 @@ prototype(Flowpack.Photon.Neos:Publisher.Site) < prototype(Neos.Fusion:Value) {
 
     value = Flowpack.Photon.Fusion:LocalResourcePublishing {
 
-        value = Flowpack.Photon.Fusion:PublishArray {
+        renderer = Flowpack.Photon.Fusion:PublishArray {
 
             // Load data
             @context {
